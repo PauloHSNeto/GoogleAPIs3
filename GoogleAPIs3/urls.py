@@ -1,7 +1,7 @@
-"""GoogleAPIs3 URL Configuration
+"""did_django_google_api_tutorial URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.0/topics/http/urls/
+    https://docs.djangoproject.com/en/3.2/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -18,9 +18,12 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-
 urlpatterns = [
-    path('main/', include('main.urls', namespace="main")),
-    path('users', include('users.urls', namespace="users")),
+    path('', include('main.urls', namespace="main")),
+    path('', include('users.urls', namespace="users")),
     path('admin/', admin.site.urls),
 ]
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
