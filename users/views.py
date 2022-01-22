@@ -1,6 +1,3 @@
-from django.shortcuts import render
-
-# Create your views here.
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -128,7 +125,7 @@ class SignInView(AjaxFormMixin, FormView):
             # attempt to authenticate user
             user = authenticate(self.request, username=username, password=password)
             if user is not None:
-                login(self.request, user, backend='GoogleAPIs3')
+                login(self.request, user, backend='django.contrib.auth.backends.ModelBackend')
                 result = "Success"
                 message = 'You are now logged in'
             else:
